@@ -68,10 +68,17 @@
                   (begin
                     (unget-string in-port input)
                     #f)])))
-
       (define (translate-value-characters)
         (unless (finished?)
-          (display (get-char in-port) out-port)
+          (let ([next-char (get-char in-port)])
+            (cond [(equal? next-char #\")
+                   (display "\\\"" out-port)]
+                  [(equal? next-char #\\)
+                   (display "\\\\" out-port)]
+                  [(equal? next-char #\return)
+                   (display "\\r" out-port)]
+                  [else
+                    (display next-char out-port)]))
           (translate-value-characters)))
 
       (display #\" out-port)

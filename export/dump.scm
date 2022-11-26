@@ -8,7 +8,7 @@
   (util json))
 
 (call-with-output-file
-  "packages.txt"
+  "./www/packages.json"
   (lambda (out-port)
     (fold-packages
       (lambda (package first)
