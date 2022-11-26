@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Guix Package Search</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="search.js"></script>
+  </head>
+
+  <body>
+    <header>
+      <h1>Guix Package Search</h1>
+      <div class="container">
+        <div class="search">
+          <img src="icons/magnifying-glass-solid.svg"> 
+          <input name="query" id="query" disabled="true" autocomplete="off" placeholder="Loading packages..."></input>
+          <img src="icons/spinner-solid.svg" class="spinner">
+        </div>
+      </div>
+    </header>
+
+    <main id="results">
+      <template>
+        <article data-result="">
+        </article>
+      </template>
+
+    </main>
+  </body>
+</html>
