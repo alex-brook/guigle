@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+guix shell ruby ruby-webrick -- ruby -run -ehttpd www -p8000
