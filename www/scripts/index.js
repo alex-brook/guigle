@@ -50,7 +50,7 @@ const onmessage = (message) => {
 const onLoaded = () => {
   const queryInput = document.querySelector("#query")
   queryInput.removeAttribute("disabled")
-  queryInput.removeAttribute("placeholder")
+  queryInput.setAttribute("placeholder", "Search for a package")
   document.querySelector(".spinner").classList.add("hidden")
 }
 
@@ -65,13 +65,16 @@ const onQueried = (packages) => {
     .forEach(package_ => {
       const clone = template.content.cloneNode(true)
       let article = clone.querySelector("article")
-
-      article.textContent = `${package_.name} (${package_.version})` 
+      
+      clone.querySelector("[data-field='name']").textContent = package_.name
+      clone.querySelector("[data-field='version']").textContent = package_.version
+      clone.querySelector("[data-field='description']").textContent = package_.description
       article.setAttribute("data-result", package_.name)
       template.parentElement.appendChild(clone)
     })
 
   document.querySelector(".spinner").classList.add("hidden")
+  document.querySelector(".wip").remove()
 }
 
 window.onload = (event) => {
