@@ -32,9 +32,10 @@ body {
 
 nav {
   background-color: var(--background-secondary);
-  padding: 1rem 2rem;
+  padding: 0 0 1rem 2rem;
   position: sticky;
   top: 0;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
 }
 
 h1, h2 {
@@ -52,6 +53,12 @@ h1, h2 {
 }
 .heading p {
   margin-bottom: 1.2rem;
+}
+
+@media only screen and (max-width: 370px) {
+  .heading p {
+    font-size: 0.8rem;
+  }
 }
 
 .guix {
