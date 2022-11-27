@@ -74,7 +74,10 @@ const onQueried = (packages) => {
     })
 
   document.querySelector(".spinner").classList.add("hidden")
-  document.querySelector(".wip").remove()
+  const wip = document.querySelector(".wip")
+  if (wip != null) {
+    wip.remove()
+  }
 }
 
 window.onload = (event) => {
