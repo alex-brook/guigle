@@ -24,21 +24,6 @@ const difference = (s, t) => {
   return d[m - 1][n - 1]
 }
 
-// the top 500 packages that match the search term
-const results = (packages, query) => {
-  return (new Promise((resolve, reject) => {  
-    if (query === "")
-      return []
-
-    const f = curry(difference, query)
-    resolve(
-      packages
-        .sort((a, b) => (f(a[0]) <= f(b[0])) ? -1 : 1 )
-        .slice(0, 500)
-    )
-  }))
-}
-
 self.onmessage = (message) => {
   const [command, ...args] = message.data
   const responses = {
@@ -52,7 +37,14 @@ self.onmessage = (message) => {
 const onLoad = async () => {
   self.packages = await fetch("../packages.json")
     .then(response => response.json())
-
+    .then(packages => packages.map(package_ => {
+      return {
+        name: package_.name,
+        version: package_.version,
+        description: package_.description.replaceAll("\\n", "\n")
+      }}))
+  
+  console.log(self.packages)
   postMessage(["loaded"])
 }
 
