@@ -44,7 +44,6 @@ const onLoad = async () => {
         description: package_.description.replaceAll("\\n", "\n")
       }}))
   
-  console.log(self.packages)
   postMessage(["loaded"])
 }
 
