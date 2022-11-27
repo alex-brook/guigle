@@ -1,4 +1,4 @@
-# Guigle
+# Guigle - Search Guix Packages
 This is a simple site for searching Guix packages. You can visit it at https://alex-brook.github.io/guigle/
 
 # Notes
