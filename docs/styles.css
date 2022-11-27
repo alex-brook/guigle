@@ -150,8 +150,9 @@ article h2 {
   border-bottom-style: none;
 }
 
-.wip {
+.search-message {
   margin: 1rem 2rem;
+  font-size: 1rem;
 }
 
 .package-title {

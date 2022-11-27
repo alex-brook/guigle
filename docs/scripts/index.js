@@ -42,7 +42,8 @@ const onmessage = (message) => {
   const [command, ...args] = message.data
   const responses = {
     "loaded": onLoaded,
-    "queried": onQueried
+    "queried": onQueried,
+    "timestamped": onTimestamped
   }
   responses[command](...args)
 }
@@ -77,11 +78,11 @@ const onQueried = (packages) => {
     })
 
   document.querySelector(".spinner").classList.add("hidden")
-  const wip = document.querySelector(".wip")
-  if (wip != null) {
-    wip.remove()
-  }
   window.scrollTo(0, 0)
+}
+
+const onTimestamped = (updatedAt) => {
+  document.querySelector("[data-search-message='updated']").textContent = `Packages last updated at ${updatedAt}`
 }
 
 window.onload = (event) => {

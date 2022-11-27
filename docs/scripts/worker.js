@@ -28,7 +28,7 @@ self.onmessage = (message) => {
   const [command, ...args] = message.data
   const responses = {
     "load" : onLoad,
-    "query": onQuery
+    "query": onQuery,
   }
   responses[command](...args)
 }
@@ -43,7 +43,12 @@ const onLoad = async () => {
         version: package_.version,
         description: package_.description.replaceAll("\\n", "\n")
       }}))
-  
+
+  self.updatedAt = await fetch("../updated-at.json")
+    .then(response => response.json())
+    .then(obj => obj.updatedAt)
+
+  postMessage(["timestamped", self.updatedAt])
   postMessage(["loaded"])
 }
 
