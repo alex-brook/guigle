@@ -16,7 +16,7 @@ const difference = (s, t) => {
       let substitutionCost = s[i] == t[j] ? 0 : 2
       d[i][j] = Math.min(
         d[i-1][j] + 1,
-        d[i][j-1] + 2,
+        d[i][j-1] + 1,
         d[i-1][j-1] + substitutionCost
       )
     }
@@ -54,14 +54,23 @@ const onQuery = (term) => {
     return
   }
 
-  const maxEdits = 5
+  const maxEdits = Math.max(term.length, 5)
   const results = packages
     .map(p => {
       p.difference = difference(p.name, term)
       return p
     })
     .filter(p => (p.difference <= maxEdits))
-    .sort((a, b) => { return (a.difference <= b.difference) ? -1 : 1 })
+    .sort((a, b) => {
+      const editDifference = a.difference - b.difference
+      if (editDifference < 0) {
+        return -1
+      } else if (editDifference > 0) {
+        return 1
+      } else {
+        return (parseFloat(a.version) <= parseFloat(b.version)) ? 1 : -1 
+      }
+    })
     .slice(0, 100)
 
   postMessage(["queried", results])
