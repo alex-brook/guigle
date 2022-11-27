@@ -69,6 +69,9 @@ const onQueried = (packages) => {
       clone.querySelector("[data-field='name']").textContent = package_.name
       clone.querySelector("[data-field='version']").textContent = package_.version
       clone.querySelector("[data-field='description']").textContent = package_.description
+
+      const guixLink = `https://packages.guix.gnu.org/packages/${package_.name}/${package_.version}` 
+      clone.querySelector("[data-field='link']").setAttribute("href", guixLink)
       article.setAttribute("data-result", package_.name)
       template.parentElement.appendChild(clone)
     })
@@ -78,6 +81,7 @@ const onQueried = (packages) => {
   if (wip != null) {
     wip.remove()
   }
+  window.scrollTo(0, 0)
 }
 
 window.onload = (event) => {

@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Guigle</title>
+    <title>Guigle - Guix Package Search</title>
     <link rel="stylesheet" href="styles.css">
     <script src="scripts/index.js"></script>
   </head>
 
   <body>
-    <header>
+    <nav>
       <div class="heading">
         <img src="icons/guix-small.svg" class="guix">
         <h1>Guigle</h1>
@@ -20,7 +20,7 @@
           <img src="icons/spinner-solid.svg" class="spinner">
         </div>
       </div>
-    </header>
+    </nav>
 
     <main id="results">
       <p class="wip">
@@ -29,8 +29,12 @@
       </p>
       <template>
         <article data-result="">
-          <h2 data-field="name"></h2>
-          <p data-field="version"></p>
+          <div class="package-title">
+            <a data-field="link">
+              <h2 data-field="name"></h2>
+            </a>
+            <p data-field="version"></p>
+          </div>
           <p data-field="description"></p>
         </article>
       </template>
