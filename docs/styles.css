@@ -55,7 +55,7 @@ h1, h2 {
   margin-bottom: 1.2rem;
 }
 
-@media only screen and (max-width: 370px) {
+@media only screen and (max-width: 429px) {
   .heading p {
     font-size: 0.8rem;
   }
