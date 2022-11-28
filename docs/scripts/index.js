@@ -53,6 +53,7 @@ const onLoaded = () => {
   queryInput.removeAttribute("disabled")
   queryInput.setAttribute("placeholder", "Search for a package")
   document.querySelector(".spinner").classList.add("hidden")
+  document.querySelector("#query").focus()
 }
 
 const onQueried = (packages) => {
@@ -85,11 +86,22 @@ const onTimestamped = (updatedAt) => {
   document.querySelector("[data-search-message='updated']").textContent = `Packages last updated at ${updatedAt}`
 }
 
+// defocus the input if you hit 'return' instead of 'done'
+// on mobile
+const onKeyUp = (event) => {
+  if (event.key !== "Enter" || window.innerWidth >= 430) {
+    return
+  }
+
+  event.preventDefault()
+  document.querySelector("#query").blur()
+}
+
 window.onload = (event) => {
   const worker = new Worker("./scripts/worker.js")
   worker.onmessage = onmessage
   worker.postMessage(["load"])
-  
+
   document
     .querySelector("#query")
     .addEventListener(
@@ -100,4 +112,7 @@ window.onload = (event) => {
           worker.postMessage(["query", event.target.value])
         },
         250))
+  document
+    .querySelector("#query")
+    .addEventListener("keyup", onKeyUp)
 }
