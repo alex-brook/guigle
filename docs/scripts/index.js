@@ -16,6 +16,10 @@ const debounce = (func, ms) => {
   }
 }
 
+const curry = (f, ...args) => {
+  return (...rest) => f(...args, ...rest)
+}
+
 // handle the search box changing by updating the displayed results
 const search = (packages, event) => {
   document
@@ -89,12 +93,34 @@ const onTimestamped = (updatedAt) => {
 // defocus the input if you hit 'return' instead of 'done'
 // on mobile
 const onKeyUp = (event) => {
-  if (event.key !== "Enter" || window.innerWidth >= 430) {
-    return
+  if (event.key === "Enter" && window.innerWidth >= 430) {
+    event.preventDefault()
+    document.querySelector("#query").blur()
   }
+}
 
-  event.preventDefault()
-  document.querySelector("#query").blur()
+const updateClearIcon = (event) => {
+  const elem = event.target
+  const icon = document.querySelector("[data-clear]")
+
+  if (elem.value !== "" && icon.classList.contains("hidden")) {
+    icon.classList.remove("hidden")
+
+  } else if (elem.value === "" && !icon.classList.contains("hidden")) {
+    icon.classList.add("hidden")
+  }
+}
+
+const clearQuery = (worker) => {
+  document
+    .querySelector("#query")
+    .value = ""
+ 
+  document
+    .querySelector("[data-clear]")
+    .classList.add("hidden")
+
+  worker.postMessage(["query", ""])
 }
 
 window.onload = (event) => {
@@ -112,7 +138,16 @@ window.onload = (event) => {
           worker.postMessage(["query", event.target.value])
         },
         250))
+
   document
     .querySelector("#query")
     .addEventListener("keyup", onKeyUp)
+
+  document
+    .querySelector("#query")
+    .addEventListener("input", updateClearIcon)
+
+  document
+    .querySelector("[data-clear]")
+    .addEventListener("pointerup", curry(clearQuery, worker))
 }
