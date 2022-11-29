@@ -55,11 +55,12 @@ h1, h2 {
   margin-bottom: 1rem;
 }
 .heading p {
-  margin-bottom: 1.2rem;
+  margin-bottom: 1.1rem;  
 }
 
 @media only screen and (max-width: 429px) {
   .heading p {
+    margin-bottom: 1.2rem;
   }
 }
 
