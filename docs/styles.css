@@ -65,6 +65,9 @@ h1, h2 {
 }
 
 @media only screen and (max-width: 320px) {
+  .heading {
+    gap: 0.3rem;
+  }
   .heading p {
     font-size: 1.1rem;
   }
@@ -223,6 +226,12 @@ article h2 {
 .search-message {
   margin: 1rem 2rem;
   font-size: 1rem;
+}
+
+@media only screen and (max-width: 320px) {
+  .search-message {
+    margin: 1rem 0.8rem;
+  }
 }
 
 .package-title {
