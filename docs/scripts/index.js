@@ -93,7 +93,7 @@ const onTimestamped = (updatedAt) => {
 // defocus the input if you hit 'return' instead of 'done'
 // on mobile
 const onKeyUp = (event) => {
-  if (event.key === "Enter" && window.innerWidth >= 430) {
+  if (event.key === "Enter" && window.innerWidth <= 430) {
     event.preventDefault()
     document.querySelector("#query").blur()
   }
