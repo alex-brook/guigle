@@ -124,6 +124,7 @@ input {
   background-color: white;
   border: 0.2rem solid white;
   border-radius: var(--border-radius);
+  max-width: 40rem;
 }
 
  img:not(.guix) {
