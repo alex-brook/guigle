@@ -1,2 +1,3 @@
 #!/usr/bin/env bash
 guix repl -- export/dump.scm
+guix shell node -- node export/validate.js
