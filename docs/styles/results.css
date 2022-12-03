@@ -1,0 +1,63 @@
+main {
+  display: grid;
+  grid-template-columns: 0.5fr repeat(5, 1fr);
+}
+
+.search-message {
+  grid-column: 2/4;
+}
+
+article {
+  display: flex;
+  flex-direction: column;
+  margin: 0 2rem;
+  grid-column: 2/4;
+}
+
+@media only screen and (max-width: 810px) {
+  article, .search-message {
+    grid-column: 1/4;
+  }
+}
+
+@media only screen and (max-width: 430px) {
+  article, .search-message {
+    grid-column: 1/-1;
+  }
+}
+
+article:first-of-type {
+  margin-top: 1rem;
+}
+
+article a {
+ text-decoration: none;
+}
+article h2 {
+  text-decoration: none;
+  border-bottom-style: none;
+}
+
+.search-message {
+  margin: 1rem 2rem;
+  font-size: 1rem;
+}
+
+@media only screen and (max-width: 320px) {
+  .search-message {
+    margin: 1rem 0.8rem;
+  }
+}
+
+.package-title {
+  display: flex;
+  align-items: center;
+}
+
+.package-title  h2 {
+  margin: 0;
+}
+.package-title p {
+  margin: 0.35em 0 0 1rem;
+}
+
